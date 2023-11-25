@@ -1,6 +1,6 @@
 import React from "react";
 
-const Service = () => {
+const Feature2 = () => {
     return (
         <section className="pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
             <div className="container mx-auto">
@@ -158,7 +158,7 @@ const Service = () => {
     );
 };
 
-export default Service;
+export default Feature2;
 
 const ServiceCard = ({icon, title, details}: any) => {
     return (

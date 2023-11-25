@@ -1,27 +1,25 @@
 import React, {useState} from "react";
 
-const Hero = () => {
+const Hero = ({title, subTitle}: any) => {
     return (
-        <>
+        <div>
             <Navbar/>
-            <div className="relative bg-white pb-[110px] pt-[120px] dark:bg-dark lg:pt-[150px]">
-                <div className="container">
+            <div className="relative bg-white pb-[110px] pt-[120px] dark:bg-dark lg:pt-[150px] ">
+                <div className="container max-w-none">
                     <div className="-mx-4 flex flex-wrap">
                         <div className="w-full px-4 lg:w-5/12">
                             <div className="hero-content">
-                                <h1 className="mb-5 text-4xl font-bold !leading-[1.208] text-dark dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl">
-                                    Kickstart Startup Website with TailGrids
+                                <h1 className="mb-5 text-4xl font-bold !leading-[1.208] text-dark sm:text-[42px] lg:text-[40px] xl:text-5xl">
+                                    {title ? title : "Kickstart Startup Website with TailGrids"}
                                 </h1>
                                 <p className="mb-8 max-w-[480px] text-base text-body-color dark:text-dark-6">
-                                    With TailGrids, business and students thrive together.
-                                    Business can perfectly match their staffing to changing demand
-                                    throughout the dayed.
+                                    {subTitle ? subTitle : "With TailGrids, business and students thrive together. Business can perfectly match their staffing to changing demand throughout the dayed."}
                                 </p>
                                 <ul className="flex flex-wrap items-center">
                                     <li>
                                         <a
                                             href="/#"
-                                            className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-center text-base font-medium text-white hover:bg-blue-dark lg:px-7"
+                                            className="inline-flex items-center justify-center rounded-md bg-blue-600 px-6 py-3 text-center text-base font-medium text-white hover:bg-blue-dark lg:px-7"
                                         >
                                             Get Started
                                         </a>
@@ -29,7 +27,7 @@ const Hero = () => {
                                     <li>
                                         <a
                                             href="/#"
-                                            className="inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium text-[#464646] hover:text-primary dark:text-white"
+                                            className="inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium text-[#464646] hover:text-primary"
                                         >
                       <span className="mr-2">
                         <svg
@@ -139,7 +137,7 @@ const Hero = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
@@ -160,19 +158,19 @@ const Navbar = () => {
 
     return (
         <header className={`absolute left-0 top-0 z-20 flex w-full items-center`}>
-            <div className="container">
+            <div className="container max-w-none">
                 <div className="relative -mx-4 flex items-center justify-between">
                     <div className="w-60 max-w-full px-4">
                         <a href="/#" className="block w-full py-5">
                             <img
                                 src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo.svg"
                                 alt="logo"
-                                className="w-full dark:hidden"
+                                className="w-full"
                             />
                             <img
                                 src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-white.svg"
                                 alt="logo"
-                                className="w-full hidden dark:block"
+                                className="w-full hidden"
                             />
                         </a>
                     </div>
@@ -186,11 +184,11 @@ const Navbar = () => {
                                 } absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden`}
                             >
                                 <span
-                                    className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
+                                    className="relative my-[6px] block h-[2px] w-[30px] bg-body-color"></span>
                                 <span
-                                    className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
+                                    className="relative my-[6px] block h-[2px] w-[30px] bg-body-color"></span>
                                 <span
-                                    className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
+                                    className="relative my-[6px] block h-[2px] w-[30px] bg-body-color"></span>
                             </button>
                             <nav
                                 id="navbarCollapse"
@@ -209,14 +207,14 @@ const Navbar = () => {
                         <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
                             <a
                                 href="/#"
-                                className="px-7 py-3 text-base font-medium text-dark hover:text-primary dark:text-white"
+                                className="px-7 py-3 text-base font-medium text-dark hover:text-primary"
                             >
                                 Sign in
                             </a>
 
                             <a
                                 href="/#"
-                                className="rounded-lg bg-primary px-7 py-3 text-base font-medium text-white hover:bg-opacity-90"
+                                className="rounded-lg bg-blue-600 px-7 py-3 text-base font-medium text-white hover:bg-opacity-90"
                             >
                                 Sign Up
                             </a>
@@ -234,7 +232,7 @@ const ListItem = ({children, NavLink}: any) => {
             <li>
                 <a
                     href={NavLink}
-                    className="flex py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex"
+                    className="flex py-2 text-base font-medium text-dark hover:text-primary lg:ml-10 lg:inline-flex"
                 >
                     {children}
                 </a>
