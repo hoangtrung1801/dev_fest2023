@@ -1,3 +1,5 @@
+"use client";
+
 import {
     CloudArrowUpIcon,
     LockClosedIcon,
@@ -13,6 +15,8 @@ export default function Feature1({
     description,
     features,
 }: any) {
+    console.log({ features });
+
     return (
         <div className="overflow-hidden bg-white py-24 sm:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -31,23 +35,24 @@ export default function Feature1({
                                     : "Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione."}
                             </p>
                             <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
-                                {features.map((feature: any) => (
-                                    <div
-                                        key={feature.title}
-                                        className="relative pl-9"
-                                    >
-                                        <dt className="inline font-semibold text-gray-900">
-                                            <feature.icon
-                                                className="absolute left-1 top-1 h-5 w-5 text-indigo-600"
-                                                aria-hidden="true"
-                                            />
-                                            {feature.title}
-                                        </dt>{" "}
-                                        <dd className="inline">
-                                            {feature.description}
-                                        </dd>
-                                    </div>
-                                ))}
+                                {features &&
+                                    features?.map((feature: any, index) => (
+                                        <div
+                                            key={index}
+                                            className="relative pl-9"
+                                        >
+                                            <dt className="inline font-semibold text-gray-900">
+                                                {/* <feature.icon
+                                                    className="absolute left-1 top-1 h-5 w-5 text-indigo-600"
+                                                    aria-hidden="true"
+                                                /> */}
+                                                {feature?.title}
+                                            </dt>{" "}
+                                            <dd className="inline">
+                                                {feature?.description}
+                                            </dd>
+                                        </div>
+                                    ))}
                             </dl>
                         </div>
                     </div>
