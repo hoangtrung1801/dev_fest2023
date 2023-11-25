@@ -1,0 +1,108 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  email          String?  @unique
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  accounts Account[]
+
+  messages Message[]
+
+  tracking Tracking[]
+
+  conversationsId String[]       @db.ObjectId
+  conversations   Conversation[] @relation(fields: [conversationsId], references: [id])
+}
+
+// create model Tracking belong to User
+model Tracking {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt        DateTime @default(now())
+  // =======PLant =====
+ 
+  namePlant        String
+  imagePlant       String
+  descriptionPlant String
+  statusPlant      String
+  qualityPlant     String
+  haveDiseasePlant Boolean  @default(false)
+  // ================
+  tasks            Task[]
+  // ================
+  user             User     @relation(fields: [userId], references: [id])
+  userId           String   @db.ObjectId
+}
+
+
+
+model Task {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String?
+  done        Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  trackingId String   @db.ObjectId
+  tracking   Tracking @relation(fields: [trackingId], references: [id])
+}
+
+model Account {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  provider      String?
+  providerId    String?
+  type          String
+  expiresAt     Int?
+  token_type    String?
+  scope         String?
+  session_state String?
+  accessToken   String?
+  refreshToken  String?
+  id_token      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerId])
+}
+
+model Message {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  text      String
+  role      String
+  createdAt DateTime @default(now())
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  conversationId String       @db.ObjectId
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+}
+
+model Conversation {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userIds String[] @db.ObjectId
+  users   User[]   @relation(fields: [userIds], references: [id])
+
+  messagesId String[]  @db.ObjectId
+  messages   Message[] @relation()
+}
