@@ -11,7 +11,9 @@ import {
     questionBlock6,
     questionBlock7,
     questionBlock8,
+    questionConfirmSeoContent,
 } from "../const";
+import { generateSeoContent } from "../genearte-seo-content";
 
 const getPrefixId = (id: string) => {
     return id.split("-")[0];
@@ -72,6 +74,8 @@ export async function POST(req: NextRequest, context: any) {
             );
         }
 
+        // generate seo content
+        // -> seocontent & seocontent-answer
         // update thread info
         const answer = messages[messages.length - 1];
         if (getPrefixId(answer.id) === question1.id) {
@@ -105,6 +109,23 @@ export async function POST(req: NextRequest, context: any) {
         } else if (getPrefixId(payload.id) === question4.id) {
             messages.push(question5);
         } else if (getPrefixId(payload.id) === question5.id) {
+            // generate seo content
+            const { title, description, price } = threadInfo;
+            const { content, data } = await generateSeoContent(
+                title,
+                description,
+                price
+            );
+
+            messages.push({
+                id: "generate-seocontent",
+                type: ThreadMessageType.TEXT,
+                content,
+                payload: {},
+            });
+            messages.push(questionConfirmSeoContent);
+            threadInfo?.seo = data;
+        } else if (getPrefixId(payload.id) === questionConfirmSeoContent.id) {
             messages.push(questionBlock6);
         } else if (getPrefixId(payload.id) === questionBlock6.id) {
             messages.push(questionBlock7);

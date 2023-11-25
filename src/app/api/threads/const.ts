@@ -43,6 +43,20 @@ export const question5: ThreadMessage = {
     payload: {},
 };
 
+export const generateSeoContent: ThreadMessage = {
+    id: "seocontent",
+    type: ThreadMessageType.TEXT,
+    content: "Generating SEO content...",
+    payload: {},
+};
+
+export const questionConfirmSeoContent: ThreadMessage = {
+    id: "seocontent",
+    type: ThreadMessageType.TEXT,
+    content: "Do you confirm this SEO content?",
+    payload: {},
+};
+
 export const questionBlock6: ThreadMessage = {
     id: "questionblock6",
     type: ThreadMessageType.QUESTION,
