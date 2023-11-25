@@ -19,20 +19,15 @@ import { formSchema } from "./constants";
 import { useRouter } from "next/navigation";
 import { renderToString } from "react-dom/server";
 
-import { BotAvatar } from "@/app/components/bot-avatar";
 import Home from "@/app/components/templates/Home";
-import { UserAvatar } from "@/app/components/user-avatar";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import toast from "react-hot-toast";
 import { cn } from "../../../libs/utils";
 
-import Contact1 from "@/components/contact1";
-import Hero1 from "@/components/hero1";
-import Hero2 from "@/components/hero2";
-import { ThreadMessage, ThreadMessageType } from "@prisma/client";
+import { Avatar, AvatarImage } from "@/app/components/ui/avatar";
 import { getComponent } from "@/app/libs/getComponent";
+import { ThreadMessage, ThreadMessageType } from "@prisma/client";
 
 // type IMessage = {
 //     id: string;
@@ -139,24 +134,24 @@ const Conversation = () => {
     };
 
     return (
-        <div className="flex flex-col justify-start items-center md:h-[1000px] w-full  rounded-2xl">
+        <div className="flex flex-col justify-start items-center w-full  rounded-2xl py-6 relative container mx-auto">
             <div className="text-2xl font-bold ">
                 Welcome back {session?.user?.name} !
             </div>
-            <div className="mt-6 lg:px-8">
+            <div className="mt-6 lg:px-8 relative">
                 <div>
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit(onSubmit)}
-                            className=" rounded-lg border w-full p-2 m md:px-6 focus-within:shadow-sm flex flex-row gap-2 "
+                            className="w-full flex flex-row space-x-4 fixed bottom-0 right-0 left-0 container mx-auto pb-8"
                         >
                             <FormField
                                 name="prompt"
                                 render={({ field }) => (
-                                    <FormItem className="">
-                                        <FormControl className="m-0 p-0">
+                                    <FormItem className="w-full">
+                                        <FormControl>
                                             <Input
-                                                className="border-0 text-xl font-medium md:w-[1000px] outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+                                                className="flex-1"
                                                 disabled={isLoading}
                                                 placeholder="Create your product description here"
                                                 {...field}
@@ -166,7 +161,7 @@ const Conversation = () => {
                                 )}
                             />
                             <Button
-                                className=" md:w-[200px] bg-black text-white"
+                                className=" bg-black text-white px-4 py-2 w-fit"
                                 type="submit"
                                 disabled={isLoading}
                                 size="icon"
@@ -177,7 +172,7 @@ const Conversation = () => {
                     </Form>
                 </div>
 
-                <div className="space-y-4 mt-4">
+                <div className="space-y-4 mt-4 flex flex-col justify-start">
                     {isLoadingConversation && (
                         <div className="animate-spin rounded-full h-20 w-20 border-b-2 border-gray-900"></div>
                     )}
@@ -204,49 +199,63 @@ const Conversation = () => {
                             <div
                                 key={message.id}
                                 className={cn(
-                                    "p-8 w-full flex items-start gap-x-8 rounded-lg bg-green-200",
+                                    "p-4 flex space-x-4 rounded-lg bg-green-200",
                                     message.type === ThreadMessageType.ANSWER
-                                        ? "bg-white border border-black/10"
+                                        ? "bg-white border border-black/10 "
                                         : "bg-green-200"
                                 )}
                             >
-                                {message.type === ThreadMessageType.QUESTION ? (
-                                    <BotAvatar />
+                                {message.type === ThreadMessageType.ANSWER ? (
+                                    <Avatar className="h-8 w-8">
+                                        <AvatarImage src="/user.png" />
+                                    </Avatar>
                                 ) : (
-                                    <UserAvatar />
+                                    <Avatar className="h-8 w-8">
+                                        <AvatarImage src="/bot.png" />
+                                    </Avatar>
                                 )}
 
                                 <div className="flex flex-col space-y-4">
                                     {message?.content !== "" && (
-                                        <p className="text-xl font-medium">
+                                        <p className="font-medium">
                                             {message.content}
                                         </p>
                                     )}
 
-                                    <div className="flex flex-col space-y-2">
-                                        {message.type ===
-                                            ThreadMessageType.QUESTION &&
-                                            message.id.includes(
-                                                "questionblock"
-                                            ) &&
-                                            message.payload?.blocks?.map(
-                                                (block) => (
-                                                    <div
-                                                        key={block.id}
-                                                        style={{ zoom: 0.5 }}
-                                                        className="hover:cursor-pointer"
-                                                        onClick={() =>
-                                                            chooseBlock(block)
-                                                        }
-                                                    >
-                                                        {getComponent(
-                                                            block.id,
-                                                            block.props
-                                                        )}
-                                                    </div>
-                                                )
-                                            )}
-                                    </div>
+                                    {message.type ===
+                                        ThreadMessageType.QUESTION &&
+                                        message.id.includes(
+                                            "questionblock"
+                                        ) && (
+                                            <div className="flex flex-col space-y-2">
+                                                {message.type ===
+                                                    ThreadMessageType.QUESTION &&
+                                                    message.id.includes(
+                                                        "questionblock"
+                                                    ) &&
+                                                    message.payload?.blocks?.map(
+                                                        (block) => (
+                                                            <div
+                                                                key={block.id}
+                                                                style={{
+                                                                    zoom: 0.5,
+                                                                }}
+                                                                className="hover:cursor-pointer"
+                                                                onClick={() =>
+                                                                    chooseBlock(
+                                                                        block
+                                                                    )
+                                                                }
+                                                            >
+                                                                {getComponent(
+                                                                    block.id,
+                                                                    block.props
+                                                                )}
+                                                            </div>
+                                                        )
+                                                    )}
+                                            </div>
+                                        )}
                                 </div>
                             </div>
                         )
