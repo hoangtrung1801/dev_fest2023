@@ -1,3 +1,5 @@
+'use client';
+
 import React, {useState} from "react";
 
 const Hero2 = ({title, subTitle}: any) => {
