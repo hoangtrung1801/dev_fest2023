@@ -6,7 +6,7 @@ const Hero2 = ({title, subTitle}: any) => {
             <Navbar/>
             <div className="relative bg-white pb-[110px] pt-[120px] dark:bg-dark lg:pt-[150px] ">
                 <div className="container max-w-none">
-                    <div className="-mx-4 flex flex-wrap">
+                    <div className=" flex flex-wrap">
                         <div className="w-full px-4 lg:w-5/12">
                             <div className="hero-content">
                                 <h1 className="mb-5 text-4xl font-bold !leading-[1.208] text-dark sm:text-[42px] lg:text-[40px] xl:text-5xl">
@@ -96,7 +96,7 @@ const Hero2 = ({title, subTitle}: any) => {
                                         alt="hero"
                                         className="max-w-full lg:ml-auto"
                                     />
-                                    <span className="absolute -bottom-8 -left-8 z-[-1]">
+                                    <span className="relative -bottom-8 -left-8 z-[-1]">
                     <svg
                         width="93"
                         height="93"
@@ -190,9 +190,9 @@ const Navbar = () => {
                                 <span
                                     className="relative my-[6px] block h-[2px] w-[30px] bg-body-color"></span>
                             </button>
-                            <nav
+                            {/* <nav
                                 id="navbarCollapse"
-                                className={`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:shadow-none lg:dark:bg-transparent ${
+                                className={` right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:shadow-none lg:dark:bg-transparent ${
                                     !open && "hidden"
                                 } `}
                             >
@@ -202,9 +202,9 @@ const Navbar = () => {
                                     <ListItem NavLink="/#">About</ListItem>
                                     <ListItem NavLink="/#">Blog</ListItem>
                                 </ul>
-                            </nav>
+                            </nav> */}
                         </div>
-                        <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
+                        {/* <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
                             <a
                                 href="/#"
                                 className="px-7 py-3 text-base font-medium text-dark hover:text-primary"
@@ -218,7 +218,7 @@ const Navbar = () => {
                             >
                                 Sign Up
                             </a>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

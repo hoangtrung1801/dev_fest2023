@@ -4,7 +4,7 @@ export default function Hero1({ title, subTitle }: any) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <div className="bg-white">
+        <div className="bg-white w-[1600px] h-[900px]">
             <div className="relative isolate px-6 pt-14 lg:px-8">
                 <div
                     className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"

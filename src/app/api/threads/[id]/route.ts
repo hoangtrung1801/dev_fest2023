@@ -89,7 +89,8 @@ export async function POST(req: NextRequest, context: any) {
                 getPrefixId(answer.id)
             )
         ) {
-            (threadInfo.blocks as unknown as Array<any>).push(payload.payload);
+            if(!threadInfo?.blocks) threadInfo.blocks = [];
+           threadInfo?.blocks.push(payload.payload);
         }
 
         // update messages in thread

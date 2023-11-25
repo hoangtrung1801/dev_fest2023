@@ -5,32 +5,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { ArrowPathIcon, FingerPrintIcon } from "@heroicons/react/24/outline";
 
-const featuresList = [
-    {
-        name: "Push to deploy.",
-        description:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-        icon: CloudArrowUpIcon,
-    },
-    {
-        name: "SSL certificates.",
-        description:
-            "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
-        icon: LockClosedIcon,
-    },
-    {
-        name: "Database backups.",
-        description:
-            "Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.",
-        icon: ServerIcon,
-    },
-    {
-        name: "Simple queues",
-        description:
-            "Quisque est vel vulputate cursus. Risus proin diam nunc commodo. Lobortis auctor congue commodo diam neque.",
-        icon: ArrowPathIcon,
-    },
-];
+
 
 export default function Feature1({
     title,
@@ -76,13 +51,7 @@ export default function Feature1({
                             </dl>
                         </div>
                     </div>
-                    <img
-                        src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
-                        alt="Product screenshot"
-                        className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
-                        width={2432}
-                        height={1442}
-                    />
+                  
                 </div>
             </div>
         </div>
