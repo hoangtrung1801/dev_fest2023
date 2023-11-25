@@ -26,6 +26,7 @@ import {backOff} from "exponential-backoff";
 import openai from "@/app/libs/openai/chatConfig";
 import { systemMessage, userMessage } from "@/app/libs/openai/chatConfig";
 import Home from "@/app/components/templates/Home";
+import Image from "next/image";
 
 
 
@@ -41,6 +42,9 @@ const Conversation = () => {
     const router = useRouter();
     const { data: session } = useSession();
 
+   const [showBlockHero, setShowBlockHero] = useState(false);
+   const [isLoadingConversation, setIsLoadingConversation] = useState(false);
+   const [choosingTemplate, setChoosingTemplate] = useState(false);
 
 
 
@@ -88,20 +92,9 @@ const Conversation = () => {
     }
 
     const homeComponentString = renderToString(<Home />);
-    // const divRef = useRef<HTMLDivElement>(null);
 
 
-    // useEffect(() => {
-    //     const div = divRef.current;
-    
-    //     if (div) {
-    //       div.scrollTo(0, 0);
-    //     }
-    
-    //   }, []);
-    // if (!session) {
-    //     router.replace("/authen");
-    // };
+   
 
     return (
         <div className="flex flex-col justify-start items-center md:h-[1000px] w-full  rounded-2xl">
@@ -149,29 +142,67 @@ const Conversation = () => {
 
               
                 <div className="space-y-4 mt-4">
-                    <div className="text-2xl"> Please choose your favourite template </div>
+                    <div className="text-2xl"> Please choose your Hero block </div>
                        <div 
                             className={cn("p-8 w-full flex items-start gap-x-8 rounded-lg bg-green-200")}
                         >
                            
                             <div className="flex flex-col gap-2">
-                                {/* create for me iframe  */}
-                                {/* <Iframe url="/home" scrolling="no" width="600px" height="400px" /> */}
-                                  <iframe className="hover:cursor-pointer hover:scale-105 transition rounded-xl" src="https://www.youtube.com/embed/8yis7GzlXNM" width="560" height="315" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-
+                         
+                                <Image onClick={()=>{
+                                      setIsLoadingConversation(true);
+                                      setChoosingTemplate(true)
+                                      setTimeout(()=>{
+                                        setShowBlockHero(true);
+                                        setIsLoadingConversation(false)
+                                      },2000)
+                                    setShowBlockHero(true)}} className={cn("hover:cursor-pointer rounded-xl  hover:scale-105 transition", choosingTemplate ? "border-black border-2 scale-105" : "")} width={560} height={315} src="/templates/template1.jpg" alt="template1"/>
+                                <Image onClick={()=>{
+                                      setIsLoadingConversation(true);
+                                      setChoosingTemplate(true)
+                                      setTimeout(()=>{
+                                        setShowBlockHero(true);
+                                        setIsLoadingConversation(false)
+                                      },2000)
+                                    setShowBlockHero(true)}} className={cn("hover:cursor-pointer rounded-xl  hover:scale-105 transition", choosingTemplate ? "border-black border-2 scale-105" : "")} width={560} height={315} src="/templates/template1.jpg" alt="template1"/>
                             </div>
                            <div className="flex flex-col gap-2">
-                           <iframe className="hover:cursor-pointer hover:scale-105 transition rounded-xl" src="https://www.youtube.com/embed/8yis7GzlXNM" width="560" height="315" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-                           <iframe className="hover:cursor-pointer hover:scale-105 transition rounded-xl" src="https://www.youtube.com/embed/8yis7GzlXNM" width="560" height="315" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                              <Image onClick={()=>{
+                                  setIsLoadingConversation(true);
+                                  setChoosingTemplate(true)
+                                  setTimeout(()=>{
+                                    setShowBlockHero(true);
+                                    setIsLoadingConversation(false)
+                                    setChoosingTemplate(true)
+                                  },2000)
+                                setShowBlockHero(true)}} className={cn("hover:cursor-pointer rounded-xl  hover:scale-105 transition", choosingTemplate ? "border-black border-2 scale-105" : "")} width={560} height={315} src="/templates/template1.jpg" alt="template1"/>
+                              <Image onClick={()=>{
+                                  setIsLoadingConversation(true);
+                                  setTimeout(()=>{
+                                    setShowBlockHero(true);
+                                    setIsLoadingConversation(false);
+                                  },2000)
+                                setShowBlockHero(true)}} className={cn("hover:cursor-pointer rounded-xl  hover:scale-105 transition", choosingTemplate ? "border-black border-2 scale-105" : "")} width={560} height={315} src="/templates/template1.jpg" alt="template1"/>
 
                            </div>   
 
                           
                         </div>
-                       
+                        {isLoadingConversation && (  <div className="animate-spin rounded-full h-20 w-20 border-b-2 border-gray-900">
+                        </div>)}
+                    {
+                    // show the div when setShowBlockHero true and setIsloadingConversation false condition
+                    showBlockHero && !isLoadingConversation &&
+                    (
+                                                <div   className={cn("p-8 w-full flex items-start gap-x-8 rounded-lg bg-green-200 transition ease-in-out transform origin-top")}>
+                                                 Choosing your Hero Block
+                                                </div>
+
+                    )}                       
                     {isLoading && (
-                        <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
-                            ....loading This is icon for loading
+                    //    i want the loading effect turn arround effect animation here
+                        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900">
+                            <span className="sr-only">Loading...</span>
                         </div>
                     )}
                     {messages.map((message) => (
