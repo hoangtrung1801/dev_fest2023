@@ -20,18 +20,6 @@ const routes = [
     color: "text-sky-500"
   },
   {
-    label: 'Tasks',
-    icon: ListChecks,
-    href: '/',
-    color: "text-violet-500",
-  },
-  {
-    label: 'Diary',
-    icon: ScrollText,
-    color: "text-pink-700",
-    href: '/diary',
-  },
-  {
     label: 'Logout',
     icon: LogOut,
     color: "text-orange-700",
@@ -56,18 +44,8 @@ const routes = [
   // },
 ]
 const routesPlants = [
-  {
-    label: 'Tracking',
-    icon: Sprout,
-    href: '/tracking',
-    color: "text-green-500"
-  },
-  {
-    label: 'Detect by Image',
-    icon: ScanSearch,
-    href: '/detect',
-    color: "text-red-500"
-  },
+ 
+ 
   {
     label: 'Your Data',
     icon: Database,
@@ -91,7 +69,7 @@ export const Sidebar = ({
 
           </div>
           <h1 className={cn("text-2xl font-bold", poppins.className)}>
-            SmartFarm
+            Gen-Ad
           </h1>
         </Link>
 
@@ -125,26 +103,8 @@ export const Sidebar = ({
         </div>
         {/* Plants */}
         <div>
-          <div className="flex flex-row justify-around items-center cursor-pointer hover:text-black hover:bg-black/10 rounded-lg transition" >
-            <h1 className="text-2xl  group flex p-3 w-full justify-start font-medium ">PLants</h1>
-            <ChevronDown className="w-5 h-5 mr-3 text-black" />
-
-          </div>
-          {
-            routesPlants.map((route) => (
-              <Link key={route.href} href={route.href}
-                className={cn("text-lg  group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-black hover:bg-black/10 rounded-lg transition",
-                  pathname === route.href ? "text-[#64BC73] bg-[#32723D]/10" : "text-zinc-400",
-
-                )}
-              >
-                <div className="flex items-center flex-1">
-                  <route.icon className={cn("w-5 h-5 mr-3", route.color)} />
-                  {route.label}
-                </div>
-              </Link>
-            ))
-          }
+        
+         
         </div>
 
 
