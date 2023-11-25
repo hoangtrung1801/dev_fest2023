@@ -1,4 +1,6 @@
-export default function Contact2({title, subTitle}: any) {
+"use client";
+
+export default function Contact2({ title, subTitle }: any) {
     return (
         <>
             <section className="bg-gray-50">
@@ -8,7 +10,9 @@ export default function Contact2({title, subTitle}: any) {
                             {title ? title : "Lorem, ipsum dolor sit amet"}
                         </h2>
                         <p className="hidden text-gray-500 sm:mt-4 sm:block">
-                            {subTitle ? subTitle : " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae dolor officia blanditiis repellat in, vero?"}
+                            {subTitle
+                                ? subTitle
+                                : " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae dolor officia blanditiis repellat in, vero?"}
                         </p>
                     </div>
                     <div className="mx-auto mt-8 max-w-xl">
@@ -27,7 +31,10 @@ export default function Contact2({title, subTitle}: any) {
                                 type="submit"
                                 className="group mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-rose-600 px-5 py-3 text-white transition focus:outline-none focus:ring focus:ring-yellow-400 sm:mt-0 sm:w-auto"
                             >
-                                <span className="text-sm font-medium"> Sign Up </span>
+                                <span className="text-sm font-medium">
+                                    {" "}
+                                    Sign Up{" "}
+                                </span>
                                 <svg
                                     className="h-5 w-5 rtl:rotate-180"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -48,5 +55,5 @@ export default function Contact2({title, subTitle}: any) {
                 </div>
             </section>
         </>
-    )
+    );
 }

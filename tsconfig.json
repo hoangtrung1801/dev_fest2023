@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/app/libs/getComponent.tss"  ],
   "exclude": [
     "node_modules"
   ]
