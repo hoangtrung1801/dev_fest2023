@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function Hero1({ title, subTitle }: any) {
+export default function Hero1({ title, subtitle }: any) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
@@ -43,8 +43,8 @@ export default function Hero1({ title, subTitle }: any) {
                                 : "Data to enrich your online business"}
                         </h1>
                         <p className="mt-6 text-lg leading-8 text-gray-600">
-                            {subTitle
-                                ? subTitle
+                            {subtitle
+                                ? subtitle
                                 : "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua."}
                         </p>
                         <div className="mt-10 flex items-center justify-center gap-x-6">

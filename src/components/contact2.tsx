@@ -1,6 +1,6 @@
 "use client";
 
-export default function Contact2({ title, subTitle }: any) {
+export default function Contact2({ title, subtitle }: any) {
     return (
         <>
             <section className="bg-gray-50">
@@ -10,8 +10,8 @@ export default function Contact2({ title, subTitle }: any) {
                             {title ? title : "Lorem, ipsum dolor sit amet"}
                         </h2>
                         <p className="hidden text-gray-500 sm:mt-4 sm:block">
-                            {subTitle
-                                ? subTitle
+                            {subtitle
+                                ? subtitle
                                 : " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae dolor officia blanditiis repellat in, vero?"}
                         </p>
                     </div>

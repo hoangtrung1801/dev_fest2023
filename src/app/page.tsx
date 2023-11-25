@@ -49,17 +49,17 @@ export default function Home() {
         <RootLayout>
             <Hero1
                 title="Eat clean with Xiensach"
-                subTitle="If you want to eat your favorite dishes cheaply and in less time, come to us today!"
+                subtitle="If you want to eat your favorite dishes cheaply and in less time, come to us today!"
             />
             <Feature1
                 title="A better workflow"
-                subTitle="Deploy faster"
+                subtitle="Deploy faster"
                 description="Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione"
                 features={featuresList}
             />
             <Contact1
                 title="A better workflow"
-                subTitle="Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione"
+                subtitle="Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione"
             />
             <Footer />
         </RootLayout>

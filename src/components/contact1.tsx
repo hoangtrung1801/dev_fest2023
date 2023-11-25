@@ -2,7 +2,7 @@
 
 import { CalendarDaysIcon, HandRaisedIcon } from "@heroicons/react/24/outline";
 
-export default function Contact1({ title, subTitle }: any) {
+export default function Contact1({ title, subtitle }: any) {
     return (
         <div className="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -13,8 +13,8 @@ export default function Contact1({ title, subTitle }: any) {
                             {title ? title : "Subscribe to our newsletter"}.
                         </h2>
                         <p className="mt-4 text-lg leading-8 text-gray-300">
-                            {subTitle
-                                ? subTitle
+                            {subtitle
+                                ? subtitle
                                 : "Nostrud amet eu ullamco nisi aute in ad minim nostrud adipisicing velit quis. Duis tempor incididunt dolore."}
                         </p>
                         <div className="mt-6 flex max-w-md gap-x-4">
