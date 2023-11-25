@@ -4,17 +4,13 @@ import prisma from "@/app/libs/prismadb";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import { systemMessage } from "@/app/libs/openai/chatConfig";
 
-
-
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
 
-export async function POST(
-    req: Request
-) {
+export async function POST(req: Request) {
     try {
         const body = await req.json();
         const { messages } = body;
@@ -27,17 +23,16 @@ export async function POST(
         }
 
         const response = await openai.createChatCompletion({
-            model:"gpt-3.5-turbo",
-            
-            messages : [...messages, systemMessage]
-            
-        })
+            model: "gpt-3.5-turbo",
 
-        return NextResponse.json(response.data.choices[0].message)
-     
+            messages: [systemMessage, ...messages],
+        });
+
+        return NextResponse.json(response.data.choices[0].message);
     } catch (error) {
-        console.log('[CONVERSATION_ERROR]', error);
-        return new NextResponse("Internal Error in conversation API", { status: 500 });
-        
+        console.log("[CONVERSATION_ERROR]", error);
+        return new NextResponse("Internal Error in conversation API", {
+            status: 500,
+        });
     }
 }
