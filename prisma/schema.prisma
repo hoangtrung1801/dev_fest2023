@@ -128,7 +128,8 @@ type ThreadMessage {
 
   id      String
   type    ThreadMessageType @default(ANY)
-  content String
+  content String?
+  payload Json?
 }
 
 enum ThreadMessageType {
@@ -137,4 +138,5 @@ enum ThreadMessageType {
   BLOCK
   TEXT
   ANY
+  END
 }

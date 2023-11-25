@@ -62,6 +62,7 @@ export async function POST(req: NextRequest, context: any) {
             );
         }
 
+        // update thread info
         const answer = messages[messages.length - 1];
         if (getPrefixId(answer.id) === question1.id) {
             threadInfo.title = payload.content;
@@ -73,6 +74,32 @@ export async function POST(req: NextRequest, context: any) {
 
         // update messages in thread
         messages?.push(payload);
+        // add new question
+        if (getPrefixId(payload.id) === question1.id) {
+            messages?.push({
+                id: question2.id,
+                type: ThreadMessageType.QUESTION,
+                content: question2.content,
+            });
+        } else if (getPrefixId(payload.id) === question2.id) {
+            messages?.push({
+                id: question3.id,
+                type: ThreadMessageType.QUESTION,
+                content: question3.content,
+            });
+        } else if (getPrefixId(payload.id) === question3.id) {
+            messages?.push({
+                id: "end",
+                type: ThreadMessageType.TEXT,
+                content: "Thank you for your information",
+            });
+            messages?.push({
+                id: "end",
+                type: ThreadMessageType.END,
+                content: null,
+            });
+        }
+
         await prisma.thread.update({
             where: {
                 id: thread?.id,
@@ -83,7 +110,7 @@ export async function POST(req: NextRequest, context: any) {
             },
         });
 
-        return NextResponse.json({ threadId, payload, thread });
+        return NextResponse.json({ ...thread, messages });
     } catch (e: any) {
         return new NextResponse(e.message, {
             status: 500,
