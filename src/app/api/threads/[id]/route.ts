@@ -1,7 +1,17 @@
 import prisma from "@/app/libs/prismadb";
 import { ThreadMessage, ThreadMessageType } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import { question1, question2, question3 } from "../const";
+import {
+    endMessage,
+    question1,
+    question2,
+    question3,
+    question4,
+    question5,
+    questionBlock6,
+    questionBlock7,
+    questionBlock8,
+} from "../const";
 
 const getPrefixId = (id: string) => {
     return id.split("-")[0];
@@ -70,34 +80,37 @@ export async function POST(req: NextRequest, context: any) {
             threadInfo.description = payload.content;
         } else if (getPrefixId(answer.id) === question3.id) {
             threadInfo.price = payload.content;
+        } else if (getPrefixId(answer.id) === question4.id) {
+            threadInfo.style = payload.content;
+        } else if (getPrefixId(answer.id) === question5.id) {
+            threadInfo.color = payload.content;
+        } else if (
+            [questionBlock6.id, questionBlock7.id, questionBlock8.id].includes(
+                getPrefixId(answer.id)
+            )
+        ) {
+            (threadInfo.blocks as unknown as Array<any>).push(payload.payload);
         }
 
         // update messages in thread
         messages?.push(payload);
         // add new question
         if (getPrefixId(payload.id) === question1.id) {
-            messages?.push({
-                id: question2.id,
-                type: ThreadMessageType.QUESTION,
-                content: question2.content,
-            });
+            messages?.push(question2);
         } else if (getPrefixId(payload.id) === question2.id) {
-            messages?.push({
-                id: question3.id,
-                type: ThreadMessageType.QUESTION,
-                content: question3.content,
-            });
+            messages?.push(question3);
         } else if (getPrefixId(payload.id) === question3.id) {
-            messages?.push({
-                id: "end",
-                type: ThreadMessageType.TEXT,
-                content: "Thank you for your information",
-            });
-            messages?.push({
-                id: "end",
-                type: ThreadMessageType.END,
-                content: null,
-            });
+            messages.push(question4);
+        } else if (getPrefixId(payload.id) === question4.id) {
+            messages.push(question5);
+        } else if (getPrefixId(payload.id) === question5.id) {
+            messages.push(questionBlock6);
+        } else if (getPrefixId(payload.id) === questionBlock6.id) {
+            messages.push(questionBlock7);
+        } else if (getPrefixId(payload.id) === questionBlock7.id) {
+            messages.push(questionBlock8);
+        } else if (getPrefixId(payload.id) === questionBlock8.id) {
+            messages.push(endMessage);
         }
 
         await prisma.thread.update({

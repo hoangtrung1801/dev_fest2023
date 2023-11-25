@@ -110,13 +110,7 @@ model Thread {
   createdAt DateTime        @default(now())
   updatedAt DateTime        @updatedAt
   messages  ThreadMessage[]
-  info      ThreadInfo
-}
-
-type ThreadInfo {
-  title       String?
-  description String?
-  price       String?
+  info      Json?
 }
 
 type ThreadMessage {
