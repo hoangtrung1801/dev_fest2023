@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-const Hero = ({title, subTitle}: any) => {
+const Hero2 = ({title, subTitle}: any) => {
     return (
         <div>
             <Navbar/>
@@ -141,7 +141,7 @@ const Hero = ({title, subTitle}: any) => {
     );
 };
 
-export default Hero;
+export default Hero2;
 
 const SingleImage = ({href, imgSrc}: any) => {
     return (
