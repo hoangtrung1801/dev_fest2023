@@ -164,6 +164,8 @@ export async function POST(req: NextRequest, context: any) {
                 },
             ];
 
+            await new Promise((resolve) => setTimeout(resolve, 5000));
+
             messages.push({
                 id: "generate-seocontent",
                 type: ThreadMessageType.TEXT,
@@ -189,8 +191,6 @@ export async function POST(req: NextRequest, context: any) {
         } else if (getPrefixId(payload.id) === questionBlock8().id) {
             messages.push(endMessage);
         }
-
-        console.log(getPrefixId(payload.id), questionBlock6().id);
 
         await prisma.thread.update({
             where: {

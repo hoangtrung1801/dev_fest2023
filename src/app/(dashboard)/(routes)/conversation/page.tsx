@@ -80,7 +80,6 @@ const Conversation = () => {
             }
         }
     };
-
     const onGenerateLandingPage = () => {
         router.push(`/landing-page/${threadId}`);
     };
@@ -134,7 +133,7 @@ const Conversation = () => {
     };
 
     return (
-        <div className="flex flex-col justify-start items-center w-full  rounded-2xl py-6 relative container mx-auto">
+        <div className="flex flex-col justify-start items-center w-full  rounded-2xl py-6 relative container mx-auto pb-24">
             <div className="text-2xl font-bold ">
                 Welcome back {session?.user?.name} !
             </div>
@@ -217,9 +216,18 @@ const Conversation = () => {
 
                                 <div className="flex flex-col space-y-4">
                                     {message?.content !== "" && (
-                                        <p className="font-medium">
-                                            {message.content}
-                                        </p>
+                                        <div>
+                                            {message?.content
+                                                .split("\n")
+                                                .map((text, index) => (
+                                                    <p
+                                                        key={index}
+                                                        className="font-medium"
+                                                    >
+                                                        {text}
+                                                    </p>
+                                                ))}
+                                        </div>
                                     )}
 
                                     {message.type ===

@@ -6,7 +6,7 @@ export default function Hero1({ title, subtitle }: any) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <div className="bg-white w-[1600px] h-[900px]">
+        <div className="bg-white w-full min-h-screen">
             <div className="relative isolate px-6 pt-14 lg:px-8">
                 <div
                     className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -60,6 +60,9 @@ export default function Hero1({ title, subtitle }: any) {
                             >
                                 Learn more <span aria-hidden="true">→</span>
                             </a>
+                        </div>
+                        <div className="flex items-center justify-center">
+                            <img src="/iphone.png" />
                         </div>
                     </div>
                 </div>
