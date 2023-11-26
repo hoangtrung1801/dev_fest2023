@@ -199,9 +199,9 @@ const Conversation = () => {
                             <div
                                 key={message.id}
                                 className={cn(
-                                    "p-4 flex space-x- rounded-lg ",
+                                    "p-4 flex space-x-4 justify-start items-center rounded-lg ",
                                     message.type === ThreadMessageType.ANSWER
-                                        ? "bg-[rgb(215,236,246)] shadow-lg border-black border-1 "
+                                        ? "bg-blue-300 shadow-lg border-black border-1 "
                                         : "bg-white border-1 border-black shadow-lg"
                                 )}
                             >
@@ -217,7 +217,7 @@ const Conversation = () => {
 
                                 <div className="flex flex-col space-y-4">
                                     {message?.content !== "" && (
-                                        <p className="font-medium">
+                                        <p className="p-3 font-medium">
                                             {message.content}
                                         </p>
                                     )}
