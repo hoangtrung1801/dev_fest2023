@@ -138,7 +138,7 @@ const Conversation = () => {
             <div className="text-2xl font-bold font-mono ">
                 GEN-AD : SIMPLE TO LANDING PAGE
             </div>
-            <div className="mt-6 lg:px-8 relative">
+            <div className="mt-6 lg:px-8 relative pb-14">
                 <div>
                     <Form {...form}>
                         <form
