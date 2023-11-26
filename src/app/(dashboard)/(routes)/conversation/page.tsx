@@ -135,8 +135,8 @@ const Conversation = () => {
 
     return (
         <div className="flex flex-col justify-start items-center w-full  rounded-2xl py-6 relative container mx-auto">
-            <div className="text-2xl font-bold ">
-                Welcome back {session?.user?.name} !
+            <div className="text-2xl font-bold font-mono ">
+                GEN-AD : SIMPLE TO LANDING PAGE
             </div>
             <div className="mt-6 lg:px-8 relative">
                 <div>
@@ -199,10 +199,10 @@ const Conversation = () => {
                             <div
                                 key={message.id}
                                 className={cn(
-                                    "p-4 flex space-x-4 rounded-lg bg-green-200",
+                                    "p-4 flex space-x- rounded-lg ",
                                     message.type === ThreadMessageType.ANSWER
-                                        ? "bg-white border border-black/10 "
-                                        : "bg-green-200"
+                                        ? "bg-[rgb(215,236,246)] shadow-lg border-black border-1 "
+                                        : "bg-white border-1 border-black shadow-lg"
                                 )}
                             >
                                 {message.type === ThreadMessageType.ANSWER ? (
@@ -211,7 +211,7 @@ const Conversation = () => {
                                     </Avatar>
                                 ) : (
                                     <Avatar className="h-8 w-8">
-                                        <AvatarImage src="/bot.png" />
+                                        <AvatarImage src="/bot2.jpg" />
                                     </Avatar>
                                 )}
 
